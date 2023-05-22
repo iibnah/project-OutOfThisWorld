@@ -11,7 +11,7 @@ PImage bg;
 
 public void setup() {
     size(720,480);
-    bg = loadImage("Scenes\TitleScreen.png");
+    bg = loadImage("Scenes\\TitleScreen.png");
 }
 
 public void draw() {
@@ -21,4 +21,5 @@ public void draw() {
     fill(255);
     textAlign(CENTER, CENTER);
     text("Project-OutOfThisWorld", width/2, height/2);
+    text("Created by Richie Xue, Intia Ibnah", width/2, height/2 + 10);
 }
