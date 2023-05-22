@@ -3,6 +3,10 @@ public class Planet{
   private String blub; 
   private String description; 
   
+  Planet(){
+    
+  }
+  
   
   boolean endChoice(){
     if () 
