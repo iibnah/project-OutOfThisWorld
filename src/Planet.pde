@@ -1,28 +1,29 @@
 public class Planet{
   private String[] characters; 
-  private String blub; 
+  private static String blub; 
   private String description; 
   
-  Planet(){
+  public Planet(){}
+  
+  public Planet(String[] characters, String blub, String description) {
+    this.characters = characters;
+    this.blub = blub;
+    this.description = description;
+  }
+  
+  public boolean endChoice(boolean choice){
+    return choice;
+  }
+  
+  public void runPlanet(){
     
   }
   
-  
-  boolean endChoice(){
-    if () 
-      return true; 
-    else return false; 
-  }
-  
-  void runPlanet(){
-    
-  }
-  
-  String getBlub(){
+  public String getBlub(){
     return blub; 
   }
   
-  void setBlub(String blub){
+  public void setBlub(String blub){
     this.blub = blub; 
   }
   
