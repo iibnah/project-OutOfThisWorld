@@ -1,4 +1,4 @@
-public class Planet2 extends Planet{
+class Planet2 extends Planets{
   Planet2(){}
   
   

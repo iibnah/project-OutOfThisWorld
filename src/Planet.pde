@@ -1,12 +1,8 @@
-public class Planet{
-  private String[] characters; 
-  private static String blub; 
+class Planets{
+  private String blub; 
   private String description; 
-  
-  public Planet(){}
-  
-  public Planet(String[] characters, String blub, String description) {
-    this.characters = characters;
+    
+  public Planets(String blub, String description) {
     this.blub = blub;
     this.description = description;
   }
