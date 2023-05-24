@@ -8,23 +8,23 @@ public enum GameState {
 
 GameState currentState;
 PImage bg; 
+int introPageIndex;
+
+    
+Page[] introPages;
 
 public void setup() {
     size(720,480);
     bg = loadImage("Scenes\\TitleScreen.png");
     currentState = GameState.INTRO;
-    Page page = new Page(0, {}, "Scenes\\TitleScreen.png");
-    Page.displayPage();
+    frameRate(24);
+    introPageIndex = 0;
+    
+    introPages = new Page[] {new Page(0, new String[] {"Project-OutOfThisWorld \n Created by Richie Xue, Intia Ibnah"}, "Scenes\\TitleScreen.png"),
+                                new Page(1, new String[] {"Hola! Como estas!"}, "Scenes\\TitleScreen.png")};
 }
 
 public void draw() {
-    background(bg);
-    frameRate(24);
-    noStroke();
-    fill(255);
-    textAlign(CENTER, CENTER);
-    text("Project-OutOfThisWorld", width/2, height/2 + 50);
-    text("Created by Richie Xue, Intia Ibnah", width/2, height/2 + 60);
     switch (currentState) {
       case INTRO:
         renderIntro();
@@ -45,54 +45,52 @@ public void draw() {
     }
 }
     
-void renderIntro()   {}
+void renderIntro()   {
+    introPages[introPageIndex].displayPage();
+}
 void renderPlanet0() {}
 void renderPlanet1() {}
 void renderPlanet2() {}
 void renderEnding()  {}
 
-//// Event handlers
-//public void keyPressed() {
-//  switch (currentState) {
-//    case INTRO:
-//      // Handle user input for Intro
-//      handleIntroInput();
-//      break;
-//    case PLANET0:
-//      // Handle user input for Planet0
-//      handlePlanet0Input();
-//      break;
-//    case PLANET1:
-//      // Handle user input for Planet1
-//      handlePlanet1Input();
-//      break;
-//    case PLANET2:
-//      // Handle user input for Planet2
-//      handlePlanet2Input();
-//      break;
-//    case ENDING:
-//      // Handle user input for the ending
-//      handleEndingInput();
-//      break;
-//  }
-//}
+// Event handlers
+public void keyPressed() {
+  switch (currentState) {
+    case INTRO:
+      // Handle user input for Intro
+      handleIntroInput();
+      break;
+    //case PLANET0:
+    //  // Handle user input for Planet0
+    //  handlePlanet0Input();
+    //  break;
+    //case PLANET1:
+    //  // Handle user input for Planet1
+    //  handlePlanet1Input();
+    //  break;
+    //case PLANET2:
+    //  // Handle user input for Planet2
+    //  handlePlanet2Input();
+    //  break;
+    //case ENDING:
+    //  // Handle user input for the ending
+    //  handleEndingInput();
+    //  break;
+    default: 
+      System.out.println("Not Working!");
+  }
+}
 
-//void mousePressed() {
-//    mouseClicked = true;
-//}
-
-//void handleIntroInput()   {
-//  if (key == ' ') {
-//    spacePressed = true;
-//  }
-//  if (mouseClicked) {
-//    currentState = GameState.PLANET_1;
-//    mouseClicked = false;
-//  }
-//}
-
-//void handleIntroInput() {}
-//void handlePlanet0Input() {}
-//void handlePlanet1Input() {}
-//void handlePlanet2Input() {}
-//void handleEndingInput()  {}
+void handleIntroInput() {
+  if (key == ' ') {
+    // If space bar is pressed, increment the introPageIndex to move to the next page
+    introPageIndex++;
+    
+    // Check if the introPageIndex exceeds the number of intro pages
+    // If so, transition to the next game state (Planet0) and reset the introPageIndex
+    if (introPageIndex >= introPages.length) {
+      currentState = GameState.PLANET0;
+      introPageIndex = 0; // Reset the introPageIndex for future use
+    }
+  }
+}
