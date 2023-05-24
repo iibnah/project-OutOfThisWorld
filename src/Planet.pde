@@ -1,6 +1,7 @@
 public class Planet{
   private String blub; 
-  private String description; 
+  private String description;
+  private Page[] pages;
   
   public Planet(){}
   

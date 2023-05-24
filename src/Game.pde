@@ -13,6 +13,8 @@ public void setup() {
     size(720,480);
     bg = loadImage("Scenes\\TitleScreen.png");
     currentState = GameState.INTRO;
+    Page page = new Page(0, {}, "Scenes\\TitleScreen.png");
+    Page.displayPage();
 }
 
 public void draw() {
@@ -49,45 +51,48 @@ void renderPlanet1() {}
 void renderPlanet2() {}
 void renderEnding()  {}
 
-// Event handlers
-public void keyPressed() {
-  switch (currentState) {
-    case INTRO:
-      // Handle user input for Intro
-      handleIntroInput();
-      break;
-    case PLANET0:
-      // Handle user input for Planet0
-      handlePlanet0Input();
-      break;
-    case PLANET1:
-      // Handle user input for Planet1
-      handlePlanet1Input();
-      break;
-    case PLANET2:
-      // Handle user input for Planet2
-      handlePlanet2Input();
-      break;
-    case ENDING:
-      // Handle user input for the ending
-      handleEndingInput();
-      break;
-  }
-}
+//// Event handlers
+//public void keyPressed() {
+//  switch (currentState) {
+//    case INTRO:
+//      // Handle user input for Intro
+//      handleIntroInput();
+//      break;
+//    case PLANET0:
+//      // Handle user input for Planet0
+//      handlePlanet0Input();
+//      break;
+//    case PLANET1:
+//      // Handle user input for Planet1
+//      handlePlanet1Input();
+//      break;
+//    case PLANET2:
+//      // Handle user input for Planet2
+//      handlePlanet2Input();
+//      break;
+//    case ENDING:
+//      // Handle user input for the ending
+//      handleEndingInput();
+//      break;
+//  }
+//}
 
-void mousePressed() {
-    mouseClicked = true;
-}
+//void mousePressed() {
+//    mouseClicked = true;
+//}
 
-void handleIntroInput()   {
-  if (key == ' ') {
-    spacePressed = true;
-  }
-  if (mouseClicked) {
-    currentState = GameState.PLANET_1;
-    mouseClicked = false;
-}
-void handlePlanet0Input() {}
-void handlePlanet1Input() {}
-void handlePlanet2Input() {}
-void handleEndingInput()  {}
+//void handleIntroInput()   {
+//  if (key == ' ') {
+//    spacePressed = true;
+//  }
+//  if (mouseClicked) {
+//    currentState = GameState.PLANET_1;
+//    mouseClicked = false;
+//  }
+//}
+
+//void handleIntroInput() {}
+//void handlePlanet0Input() {}
+//void handlePlanet1Input() {}
+//void handlePlanet2Input() {}
+//void handleEndingInput()  {}
