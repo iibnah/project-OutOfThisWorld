@@ -1,6 +1,6 @@
 public class Planet{
   private String[] characters; 
-  private String blub; 
+  private static String blub; 
   private String description; 
   
   public Planet(){}
