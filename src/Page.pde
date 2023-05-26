@@ -27,5 +27,7 @@ class Page
     text(script[0], width/2, 355);
   }
   
+  void boolean makeChoice(String[] option1, String[] option2) {
+  
   
 }
