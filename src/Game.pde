@@ -13,9 +13,9 @@ int planet0Index = 0;
 int planet1Index = 0;
 int planet2Index = 0;
 String blub = "";
-PFont myFont;
 
-    
+   
+ChoicePage planet0land;    
 Page[] introPages;
 
 public void setup() {
@@ -23,18 +23,14 @@ public void setup() {
     size(720,480);
     frameRate(24);
     currentState = GameState.INTRO;
-    //font setup
-    myFont = createFont("Courier New Bold", 10);
-    textFont(myFont);
     
+    planet0land = new ChoicePage(5, new String[] {"Will you:", "Land on Lathea?", "Move on?"}, "Scenes\\TitleScreen.png", new Page[] {}, new Page[] {});  
     introPages = new Page[] {new Page(0, new String[] {"Project-OutOfThisWorld \n Created by Richie Xue, Intia Ibnah"}, "Scenes\\TitleScreen.png"),
                              new Page(1, new String[] {"Hola! Ohaiyo! Como estas!"}, "Scenes\\TitleScreen.png"),
-                             new Page(2, new String[] {"Now, " + blub + " let’s try to find the perfect planet to live on!"}, "Scenes\\TitleScreen.png")
-                             new Page(3, new String[] {"With your astute sense of curiosity, you set off on an adventure away from home, hoping to explore all that space has to offer. Surely there is someplace that will satisfy your curiosity, right? Lets get started, shall we?"}, "Scenes\\TitleScreen.png")
-                             new Page(4, new String[] {"Stumbles onto Planet00:\nArriving at Planet00: Lathea. A lush and vibrant planet with dense forests and a mild climate, Lathea is quite similar to South America. However, the planet is known for its unpredictable weather patterns, with sudden storms and strong winds leading to catastrophic storms. The planet also holds ancient ruins and hidden treasures, attracting acquisitive explorers…"}, "Scenes\\TitleScreen.png"),
-                             new Page(5, new String[] {"You decide to:"}, "Scenes\\TitleScreen.png"),  
+                             new Page(3, new String[] {"Now, " + blub + " let's try to find the perfect planet to live on!"}, "Scenes\\TitleScreen.png"),
+                             new Page(4, new String[] {"Stumbles onto Planet00:\nArriving at Planet00: Lathea. A lush and vibrant planet with dense forests and a mild climate, Lathea is quite similar to South America. However, the planet is known for its unpredictable weather patterns, with sudden storms and strong winds leading to catastrophic storms. The planet also holds ancient ruins and hidden treasures, attracting acquisitive explorers…"}, "Scenes\\TitleScreen.png"),  
+                             planet0land
                            };
-    
 }
 
 public void draw() {
@@ -59,8 +55,9 @@ public void draw() {
 }
     
 void renderIntro()   {
-    if (introPageIndex ==2) {
-      background(bg);
+    //name creation page 
+    if (introPageIndex == 2) {
+      background(#000000);
       textAlign(CENTER, CENTER);
       textSize(20);
       text("Before we start, what would you like to be called?", width/2, height/2 - 20);
@@ -109,12 +106,24 @@ void handleIntroInput() {
     else if (key == BACKSPACE && blub.length() > 0) blub = blub.substring(0, blub.length() - 1);
     else if (key == ENTER)                          introPageIndex++; 
   }
-  if 
+ /* else if (introPageIndex == 5) {
+        if (key == UP)        planet0land.pickChoice2();
+        else if (key == DOWN) planet0land.pickChoice2();
+        else if (key == ENTER) {
+            // Perform actions based on the selected choice
+            if (planet0land.getChoice() == 1) {
+                 introPageIndex++;
+            } else if (planet0land.getChoice() == 2) {
+                 introPageIndex++;
+            }
+            // Reset the choice variable
+             introPageIndex++;
+  } */
   else if (key == ' ') {
     if (introPageIndex >= introPages.length) {
       currentState = GameState.PLANET0;
       introPageIndex = 0; // Reset the introPageIndex for future use
     }
     introPageIndex++;
-    }
+  }
 }
