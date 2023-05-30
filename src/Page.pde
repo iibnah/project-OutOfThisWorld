@@ -1,25 +1,33 @@
 class Page
 {
-  int[] outcomes = new int[5];
-  String[] choices = new String[5];
-  String content;
-  //////image
-  //////etc
+  int pageNumber; 
+  String[] script;
+  PImage bg;
   
-  Page(int[] pages, String[] options, String text)
-  {
-    outcomes = pages;
-    choices = options;
-    content = text;
-  }
-
-  int goToPage(int userInput)
-  {
-    return outcomes[userInput];
+  Page(int pageNumber, String[] script, String imagePath) {
+    this.pageNumber = pageNumber;
+    this.script = script;
+    bg = loadImage(imagePath);
   }
   
   void displayPage()
   {
-    ////TODO
+    //loading in bg
+    background(bg);
+    //textbox code
+    fill(#502C60);
+    rect(0, 315, 720, 105);
+    fill(#A493FD);
+    rect(15, 330, 690, 75); 
+    noStroke();
+    fill(#ffffff);
+    
+    
+    //testing printing text
+    text(script[0], width/2, 355);
   }
+  
+  void boolean makeChoice(String[] option1, String[] option2) {
+  
+  
 }
