@@ -16,7 +16,7 @@ int planet1Index = 0;
 int planet2Index = 0;
 String blub = "";
 
-   
+public String getBlub() {return blub;}
 ChoicePage planet0land;    
 Page[] introPages;
 
@@ -25,26 +25,25 @@ public void setup() {
     size(720,480);
     frameRate(24);
     currentState = GameState.INTRO;
-    
-    planet0land = new ChoicePage(6, new String[] {"Will you:", "Land on Lathea?", "Move on?"}, "Scenes\\TitleScreen.png", new Page[] {}, new Page[] {});  
-
-    introPages = new Page[] {new Page(0, new String[] {"Project-OutOfThisWorld \n Created by Richie Xue, Intia Ibnah"}, "Scenes\\TitleScreen.png"),
-                             new Page(1, new String[] {"Hola! Ohaiyo! Como estas!"}, "Scenes\\TitleScreen.png"),
-                             new Page(2, new String[] {}, "Scenes\\TitleScreen.png"), 
-                             new Page(3, new String[] {"Now, " + blub + " let's try to find the perfect planet to live on!"}, "Scenes\\TitleScreen.png"),
-                             //new Page(4, new String[] {"ball"}, "Scenes\\TitleScreen.png")
-                             new Page(5, new String[] {"You stumble upon Planet00:\n" 
-                                                     + "Arriving at Lathea, a lush and vibrant planet with dense forests and a mild climate, Lathea is quite similar to\n" 
-                                                     + "South America. However, the planet is known for its unpredictable weather patterns, with sudden storms and strong\n" 
-                                                     + "winds leading to catastrophic storms. The planet also holds ancient ruins and hidden treasures,\n" 
-                                                     + "attracting acquisitive explorers…"}, "Scenes\\TitleScreen.png"),  
-                             planet0land
-                           };
 }
 
 public void draw() {
     switch (currentState) {
-      case INTRO:
+      case INTRO:          
+      planet0land = new ChoicePage(6, new String[] {"Will you:", "Land on Lathea?", "Move on?"}, "Scenes\\TitleScreen.png", new Page[] {}, new Page[] {});  
+    
+      introPages = new Page[] {new Page(0, new String[] {"Project-OutOfThisWorld \n Created by Richie Xue, Intia Ibnah"}, "Scenes\\TitleScreen.png"),
+                               new Page(1, new String[] {"Hola! Ohaiyo! Como estas!"}, "Scenes\\TitleScreen.png"),
+                               new Page(2, new String[] {}, "Scenes\\TitleScreen.png"), 
+                               new Page(3, new String[] {"Now, " + blub + " let's try to find the perfect planet to live on!"}, "Scenes\\TitleScreen.png"),
+                               new Page(4, new String[] {"ball"}, "Scenes\\TitleScreen.png"),
+                               new Page(5, new String[] {"You stumble upon Planet00:\n" 
+                                                       + "Arriving at Lathea, a lush and vibrant planet with dense forests and a mild climate, Lathea is quite similar to\n" 
+                                                       + "South America. However, the planet is known for its unpredictable weather patterns, with sudden storms and strong\n" 
+                                                       + "winds leading to catastrophic storms. The planet also holds ancient ruins and hidden treasures,\n" 
+                                                       + "attracting acquisitive explorers…"}, "Scenes\\TitleScreen.png"),  
+                               planet0land
+                             };
         renderIntro();
         break;
       case PLANET0:
@@ -119,10 +118,11 @@ public void keyPressed() {
 
 void handleIntroInput() {
   if (introPageIndex == 2) {
-    if (key != ENTER && key != BACKSPACE)           blub += key;
+    if (key != ENTER && key != BACKSPACE)          { blub += key; System.out.println(blub);} 
+                            
     else if (key == BACKSPACE && blub.length() > 0) blub = blub.substring(0, blub.length() - 1);
-    else if (key == ENTER)  {                        
-                                                    blub = ""; 
+    else if (key == ENTER)  {                             
+                                                    System.out.println(blub);
                                                     introPageIndex++; 
     }
   }
