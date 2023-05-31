@@ -121,7 +121,10 @@ void handleIntroInput() {
   if (introPageIndex == 2) {
     if (key != ENTER && key != BACKSPACE)           blub += key;
     else if (key == BACKSPACE && blub.length() > 0) blub = blub.substring(0, blub.length() - 1);
-    else if (key == ENTER)                          introPageIndex++; 
+    else if (key == ENTER)  {                        
+                                                    blub = ""; 
+                                                    introPageIndex++; 
+    }
   }
   //else if (introPageIndex == 5) {
   //      if (key == UP)        planet0land.pickChoice2();
