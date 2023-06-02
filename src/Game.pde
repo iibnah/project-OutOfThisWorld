@@ -7,16 +7,19 @@ public enum GameState {
 }
 
 GameState currentState;
+
 PImage bg; 
+
 int introPageIndex = 0;
 int planet0Index = 0;
 int planet1Index = 0;
 int planet2Index = 0;
+
 String blub = "";
 
-public String getBlub() {return blub;}
 ChoicePage planet0land;    
 Page[] introPages;
+Page[] planet0pages;
 
 public void setup() {
     //game setup
@@ -54,7 +57,6 @@ public void draw() {
         renderPlanet2();
         break;
       case ENDING:
-        // Render the game ending
         renderEnding();
         break;
     }
@@ -81,7 +83,12 @@ void renderIntro()   {
       introPages[introPageIndex].displayPage();
     }
 }
-void renderPlanet0() {}
+
+void renderPlanet0() {
+    resetFont(); 
+    planet0pages[planet0Index].displayPage();
+}
+
 void renderPlanet1() {}
 void renderPlanet2() {}
 void renderEnding()  {}
@@ -90,13 +97,11 @@ void renderEnding()  {}
 public void keyPressed() {
   switch (currentState) {
     case INTRO:
-      // Handle user input for Intro
       handleIntroInput();
       break;
-    //case PLANET0:
-    //  // Handle user input for Planet0
-    //  handlePlanet0Input();
-    //  break;
+    case PLANET0:
+      handlePlanet0Input();
+      break;
     //case PLANET1:
     //  // Handle user input for Planet1
     //  handlePlanet1Input();
@@ -124,16 +129,25 @@ void handleIntroInput() {
     if (keyCode == UP)        planet0land.pickChoice1();
     else if (keyCode == DOWN) planet0land.pickChoice2();
     else if (key == ENTER) {
-       // Perform actions based on the selected choice
-        if (planet0land.getChoice() == 1)      {currentState = GameState.PLANET0; System.out.print(currentState);}
+        if (planet0land.getChoice() == 1)      {currentState = GameState.PLANET0; Planet0 planet0 = new Planet0(blub); planet0pages = planet0.pages; System.out.print(currentState);}
         else if (planet0land.getChoice() == 2) {currentState = GameState.PLANET1; System.out.print(currentState);}
     }
   } 
   else if (key == ' ') {
     if (introPageIndex >= introPages.length) {
       currentState = GameState.PLANET0;
-      introPageIndex = 0; // Reset the introPageIndex for future use
+      introPageIndex = 0; 
     }
     introPageIndex++;
   }
+}
+
+void handlePlanet0Input() {
+  if (key == ' ') {
+    if (planet0Index >= planet0pages.length) {
+      currentState = GameState.PLANET2;
+      planet0Index = 0; 
+    }
+    planet0Index++;
+  }  
 }
