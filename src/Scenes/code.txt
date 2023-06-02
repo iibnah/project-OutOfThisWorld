@@ -1,0 +1,10 @@
+scenes are named by 3 parts --- 
+
+0: planet number (planet00, planet01, or planet02) 
+
+1: a = first part of the planet's arc
+   b = second part of planet arc 
+   
+2: a = without sprite 
+   b = with sprite 
+   c = with sprite shadowed  
