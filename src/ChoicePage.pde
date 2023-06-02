@@ -34,11 +34,8 @@ public class ChoicePage extends Page {
         text(script[2], width/2, 390);
         
         // highlight select
-        if (choice == 1) {
-            pickChoice1();
-        } else if (choice == 2) {
-            pickChoice2();
-        }
+        if (choice == 1)      pickChoice1();
+        else if (choice == 2) pickChoice2();
     }
 
     

@@ -1,15 +1,17 @@
 public class Planet0 extends Planet{
-  Page[] script = new Page[] {}; 
+   // new ChoicePage(6, new String[] {"Will you:", "Land on Lathea?", "Move on?"}, "Scenes\\TitleScreen.png", new Page[] {}, new Page[] {});  
+    
+   Page[] planet0script = new Page[] {new Page(0, new String[] {"Upon landing on Lathea, you observe your surroundings. Trees cover almost every inch of the terrain and sky at the same time."}, "Scenes\\TitleScreen.png"),
+                               new Page(1, new String[] {"While surveying the environment, you hear a faint rustling and..."}, "Scenes\\TitleScreen.png"),
+                               new Page(2, new String[] {"You suddenly find yourself surrounded by a group of misfits!"}, "Scenes\\TitleScreen.png"), 
+                               new Page(3, new String[] {"The group is equipped with laser blasters, but the guns have been tarnished with rusty handles and corroded nozzles, diminishing their threatening potential."}, "Scenes\\TitleScreen.png"),
+                               new Page(4, new String[] {"At the center, a figure adorned with jewels and trinkets carries the group’s flag with its intricate design. They appear to be the leader of the group."}, "Scenes\\TitleScreen.png"),
+                            
+                             };
  
 
 
-  public Planet0(){
-    super(getBlub(), 
-          "Planet00: Lathea. A lush and vibrant planet with dense forests and a mild climate," 
-          + " Lathea is quite similar to South America. However, the planet is known for its "
-          + "unpredictable weather patterns, with sudden storms and strong winds leading to "
-          + "catastrophic storms. The planet also holds ancient ruins and hidden treasures, "
-          + "attracting acquisitive explorers…", 
-          script); 
-  }
+  //public Planet0(String blub){
+  //  super(blub, planet0script); 
+  //}
 }

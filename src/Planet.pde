@@ -1,13 +1,11 @@
 public class Planet{
   private String blub; 
-  private String description;
   public Page[] pages;
   
   public Planet(){}
   
-  public Planet(String blub, String description, Page[] pages) {
+  public Planet(String blub, Page[] pages) {
     this.blub = blub;
-    this.description = description;
     this.pages = pages;
   }
   

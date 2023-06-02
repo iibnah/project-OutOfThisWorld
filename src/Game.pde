@@ -6,8 +6,6 @@ public enum GameState {
     ENDING
 }
 
-
-
 GameState currentState;
 PImage bg; 
 int introPageIndex = 0;
@@ -118,27 +116,19 @@ public void keyPressed() {
 
 void handleIntroInput() {
   if (introPageIndex == 2) {
-    if (key != ENTER && key != BACKSPACE)          { blub += key; System.out.println(blub);} 
-                            
+    if (key != ENTER && key != BACKSPACE)           blub += key;                      
     else if (key == BACKSPACE && blub.length() > 0) blub = blub.substring(0, blub.length() - 1);
-    else if (key == ENTER)  {                             
-                                                    System.out.println(blub);
-                                                    introPageIndex++; 
-    }
+    else if (key == ENTER)                          introPageIndex++; 
   }
-  //else if (introPageIndex == 5) {
-  //      if (key == UP)        planet0land.pickChoice2();
-  //      else if (key == DOWN) planet0land.pickChoice2();
-  //      else if (key == ENTER) {
-  //          // Perform actions based on the selected choice
-  //          if (planet0land.getChoice() == 1) {
-  //               introPageIndex++;
-  //          } else if (planet0land.getChoice() == 2) {
-  //               introPageIndex++;
-  //          }
-  //          // Reset the choice variable
-  //           introPageIndex++;
-  //} 
+  else if (introPageIndex == 6) {
+    if (keyCode == UP)        planet0land.pickChoice1();
+    else if (keyCode == DOWN) planet0land.pickChoice2();
+    else if (key == ENTER) {
+       // Perform actions based on the selected choice
+        if (planet0land.getChoice() == 1)      {currentState = GameState.PLANET0; System.out.print(currentState);}
+        else if (planet0land.getChoice() == 2) {currentState = GameState.PLANET1; System.out.print(currentState);}
+    }
+  } 
   else if (key == ' ') {
     if (introPageIndex >= introPages.length) {
       currentState = GameState.PLANET0;
