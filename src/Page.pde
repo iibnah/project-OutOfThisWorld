@@ -13,27 +13,30 @@ class Page {
   }
   
   String wrapify( String input) {
-        String output = ""; 
-        int start = 0; 
-        for(int index = 1 ; index < input.length(); index++){
-            if (index % 113 == 0) {
-                if (input.substring(index, index+1).equals(" ")) {
-                    output += input.substring(start, index + 1) + "\n";
-                    start = index + 1; 
-                }
-                else {                    
-                    while (!input.substring(index, index+1).equals(" ")) {
-                        index--; 
-                    } 
-                    output += input.substring(start, ++index ) + "\n";
-                    start = index;
-                    ++index; 
-                }
-            } 
-        }
-        output += input.substring(start); 
-        return output; 
-//}
+      String output = "";
+      int index = 0;
+      while (index < input.length()) {
+          if (index % 113 == 0 && index != 0) {
+              if (input.charAt(index) != ' ') {
+                  int tempIndex = index;
+                  while (input.charAt(tempIndex) != ' ') {
+                      tempIndex--;
+                  }
+                  output += input.substring(0, tempIndex) + "\n";
+                  input = input.substring(tempIndex + 1);
+                  index = 0;
+              } 
+              else {
+                  output += input.substring(0, index) + "\n";
+                  input = input.substring(index + 1);
+                  index = 0;
+              }
+          }
+          index++;
+      }
+      output += input;
+      return output;
+  }
 
   void displayPage()
   {
