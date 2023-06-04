@@ -12,6 +12,29 @@ class Page {
     textFont(myFont);
   }
   
+  String wrapify( String input) {
+        String output = ""; 
+        int start = 0; 
+        for(int index = 1 ; index < input.length(); index++){
+            if (index % 113 == 0) {
+                if (input.substring(index, index+1).equals(" ")) {
+                    output += input.substring(start, index + 1) + "\n";
+                    start = index + 1; 
+                }
+                else {                    
+                    while (!input.substring(index, index+1).equals(" ")) {
+                        index--; 
+                    } 
+                    output += input.substring(start, ++index ) + "\n";
+                    start = index;
+                    ++index; 
+                }
+            } 
+        }
+        output += input.substring(start); 
+        return output; 
+//}
+
   void displayPage()
   {
     //loading in bg
@@ -27,6 +50,6 @@ class Page {
     fill(#ffffff);
     
     //testing printing text
-    text(script[0], width/2, 355);
+    text(wrapify(script[0]), width/2, 355);
   }
 }

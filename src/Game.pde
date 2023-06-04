@@ -38,11 +38,7 @@ public void draw() {
                                new Page(2, new String[] {}, "Scenes\\TitleScreen.png"), 
                                new Page(3, new String[] {"Now, " + blub + " let's try to find the perfect planet to live on!"}, "Scenes\\TitleScreen.png"),
                                new Page(4, new String[] {"ball"}, "Scenes\\TitleScreen.png"),
-                               new Page(5, new String[] {"You stumble upon Planet00:\n" 
-                                                       + "Arriving at Lathea, a lush and vibrant planet with dense forests and a mild climate, Lathea is quite similar to\n" 
-                                                       + "South America. However, the planet is known for its unpredictable weather patterns, with sudden storms and strong\n" 
-                                                       + "winds leading to catastrophic storms. The planet also holds ancient ruins and hidden treasures,\n" 
-                                                       + "attracting acquisitive explorers…"}, "Scenes\\TitleScreen.png"),  
+                               new Page(5, new String[] {"You stumble upon Planet00: Arriving at Lathea, a lush and vibrant planet with dense forests and a mild climate, Lathea is quite similar to South America. However, the planet is known for its unpredictable weather patterns, with sudden storms and strong winds leading to catastrophic storms. The planet also holds ancient ruins and hidden treasures, attracting acquisitive explorers…"}, "Scenes\\TitleScreen.png"),  
                                planet0land
                              };
         renderIntro();
