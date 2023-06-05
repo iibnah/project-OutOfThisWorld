@@ -117,9 +117,9 @@ public void keyPressed() {
 void handleIntroInput() {
   //name creation page
   if (introPageIndex == 2) {
-    if (key != ENTER && key != BACKSPACE)           blub += key;                      
-    else if (key == BACKSPACE && blub.length() > 0) blub = blub.substring(0, blub.length() - 1);
-    else if (key == ENTER)                          introPageIndex++; 
+    if (key != ENTER && key != BACKSPACE && keyCode != SHIFT)  blub += key;                      
+    else if (key == BACKSPACE && blub.length() > 0)            blub = blub.substring(0, blub.length() - 1);
+    else if (key == ENTER)                                     introPageIndex++; 
   }
   
   //choice page
