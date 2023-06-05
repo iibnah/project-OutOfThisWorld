@@ -1,5 +1,5 @@
-class Planet2 extends Planets{
-  Planet2(){}
+public class Planet2 extends Planet{
+  
   
   
 

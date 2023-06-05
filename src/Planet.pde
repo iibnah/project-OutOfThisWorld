@@ -1,10 +1,12 @@
-class Planets{
+public class Planet{
   private String blub; 
-  private String description; 
-    
-  public Planets(String blub, String description) {
+  public Page[] pages;
+  
+  public Planet(){}
+  
+  public Planet(String blub, Page[] pages) {
     this.blub = blub;
-    this.description = description;
+    this.pages = pages;
   }
   
   public boolean endChoice(boolean choice){
