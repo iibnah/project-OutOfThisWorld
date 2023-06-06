@@ -1,28 +1,28 @@
 public class Planet{
-  private String blub; 
-  public Page[] pages;
+  String llamo; 
+  Page[] pages;
   
   public Planet(){}
   
-  public Planet(String blub, Page[] pages) {
-    this.blub = blub;
+  public Planet(String llamo, Page[] pages) {
+    this.llamo = llamo;
     this.pages = pages;
-  }
-  
-  public boolean endChoice(boolean choice){
-    return choice;
-  }
-  
+  }  
+   
   public void runPlanet(){
     
   }
   
-  public String getBlub(){
-    return blub; 
-  }
   
-  public void setBlub(String blub){
-    this.blub = blub; 
+ int[] add(int[] first, int[] second) {
+    int length = first.length < second.length ? first.length
+            : second.length;
+    int[] result = new int[length];
+
+    for (int i = 0; i < length; i++) {
+        result[i] = first[i] + second[i];
+    }
+
+    return result;
   }
-  
 }
