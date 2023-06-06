@@ -37,8 +37,7 @@ public class ChoicePage extends Page {
         if (choice == 1)      pickChoice1();
         else if (choice == 2) pickChoice2();
     }
-
-    
+  
     public void pickChoice1() {
         choice = 1;
         stroke(#ffffff);
