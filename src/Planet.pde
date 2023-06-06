@@ -13,16 +13,14 @@ public class Planet{
     
   }
   
-  
- int[] add(int[] first, int[] second) {
-    int length = first.length < second.length ? first.length
-            : second.length;
-    int[] result = new int[length];
-
-    for (int i = 0; i < length; i++) {
-        result[i] = first[i] + second[i];
-    }
-
-    return result;
+  Page[] add(Page[] first, Page[] second) {
+      Page[] result = new Page[first.length + second.length];
+      for (int i = 0; i < first.length; i++) {
+          result[i] = first[i];
+      }
+      for (int j = 0; j < second.length; j++) {
+          result[j + first.length] = second[j];
+      }
+      return result;
   }
 }

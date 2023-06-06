@@ -19,7 +19,7 @@ String blub = "";
 
 Planet0 planet0;
 
-ChoicePage planet0land;    
+ChoicePage planet0land; 
 Page[] introPages;
 Page[] planet0pages;
 
@@ -45,6 +45,7 @@ public void draw() {
         renderIntro();
         break;
       case PLANET0:
+    
         Planet0 planet0 = new Planet0(blub); planet0pages = planet0.pages;
         renderPlanet0();
         break;
@@ -129,6 +130,7 @@ void handleIntroInput() {
   else if (introPageIndex == 5) {
     if (keyCode == UP)        planet0land.pickChoice1();
     else if (keyCode == DOWN) planet0land.pickChoice2();
+    
     else if (key == ENTER) {
         if (planet0land.getChoice() == 1)      {currentState = GameState.PLANET0; System.out.print(currentState);}
         else if (planet0land.getChoice() == 2) {currentState = GameState.PLANET1; System.out.print(currentState);}
@@ -147,17 +149,20 @@ void handleIntroInput() {
 
 void handlePlanet0Input() {
   //choice page
-  /*
+  
   if (planet0Index == 11) {
-      if (keyCode == UP)        shouldFollow.pickChoice1();
-      else if (keyCode == DOWN) shouldFollow.pickChoice2();
+      if (keyCode == UP)        planet0.shouldFollow.pickChoice1();
+      else if (keyCode == DOWN) planet0.shouldFollow.pickChoice2();
+      
       else if (key == ENTER) {
-          if (shouldFollow.getChoice() == 1)      {pages = add(shouldFollow.pages, shouldFollow.choice1path); System.out.print("left");}
-          else if (shouldFollow.getChoice() == 2) {pages = add(shouldFollow.pages, shouldFollow.choice2path); System.out.print("join");}
+          if (planet0.shouldFollow.getChoice() == 1)      {planet0.pages = planet0.add(planet0.pages, planet0.shouldFollow.choice1path); System.out.print("left");}
+          else if (planet0.shouldFollow.getChoice() == 2) {planet0.pages = planet0.add(planet0.pages, planet0.shouldFollow.choice2path); System.out.print("join");}
+          planet0Index++;
       }
+      
    }
-   */
-  if (key == ' ') {
+   
+  else if (key == ' ') {
     if (planet0Index >= planet0pages.length) {
       currentState = GameState.PLANET2;
       planet0Index = 0; 
