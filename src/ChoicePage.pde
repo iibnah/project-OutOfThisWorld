@@ -1,4 +1,3 @@
-
 public class ChoicePage extends Page {
     private int choice;
     private Page[] choice1path;
