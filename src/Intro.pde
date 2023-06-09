@@ -48,7 +48,7 @@ void handleIntroInput() {
             System.out.println(currentState);
         }
         else if (planet0land.getChoice() == 2) {
-            joinSenhar = new ChoicePage(35, new String[] {"You decide to: ", "join her", "refuse"}, "Scenes\\planet01ba.png", new Page[] {}, new Page[] {});
+            joinSenhar = new ChoicePage(36, new String[] {"You decide to: ", "join her", "refuse"}, "Scenes\\planet01ba.png", new Page[] {}, new Page[] {});
             planet1 = new Planet1(blub);
             planet1Pages = planet1.pages;
             planet1EpilPages = planet1.epilScene;

@@ -110,7 +110,7 @@ public class Planet0 extends Planet {
   void handlePlanetEpilInput() {
     if (key == ' ') {
       if (planet0EpilIndex == planet0EpilPages.length - 1) {
-        joinSenhar = new ChoicePage(35, new String[] {"You decide to: ", "join her", "refuse"}, "Scenes\\planet01ba.png", new Page[] {}, new Page[] {});
+        joinSenhar = new ChoicePage(36, new String[] {"You decide to: ", "join her", "refuse"}, "Scenes\\planet01ba.png", new Page[] {}, new Page[] {});
         planet1 = new Planet1(this.llamo);
         planet1Pages = planet1.pages;
         planet1EpilPages = planet1.epilScene;

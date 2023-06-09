@@ -82,9 +82,6 @@ void resetFont() {
   textSize(10);
 }
 
-void renderPlanet1() {}
-void renderPlanet2() {}
-
 void renderGoodEnding()  {
    Page endScreen = new Page(0, new String[] {"Having found their true belonging, " + blub + " stayed on his newly found home, living there happily ever after..."}, "Scenes\\TitleScreen.png");
    endScreen.displayPage();
