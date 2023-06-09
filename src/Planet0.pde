@@ -54,17 +54,21 @@ public class Planet0 extends Planet {
   public Planet0(String blub) {
     this.llamo = blub;
     this.pages = startScene;
+    mazeReset();
   }
   
   void renderPlanet() {
-    if (planet0Index == 20 && !gameOver) mazeGame(maze0);
+    if (planet0Index == 20) {
+      if (!gameOver) {mazeGame(maze0);}
+      else planet0Index++;
+    }
     else {
         resetFont(); 
         planet0Pages[planet0Index].displayPage();
     }
   }
   
-  void renderPlanet0Epil() {
+  void renderPlanetEpil() {
    planet0EpilPages[planet0EpilIndex].displayPage();
   }
 }

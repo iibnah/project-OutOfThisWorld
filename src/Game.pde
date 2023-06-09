@@ -3,7 +3,9 @@ public enum GameState {
     PLANET0,
     PLANET0EPIL,
     PLANET1,
+    PLANET1EPIL,
     PLANET2,
+    PLANET2EPIL,
     ENDING
 }
 
@@ -14,17 +16,26 @@ int introPageIndex = 0;
 int planet0Index = 0;
 int planet0EpilIndex = 0;
 int planet1Index = 0;
+int planet1EpilIndex = 0;
 int planet2Index = 0;
-
+int planet2EpilIndex = 0;
 
 Planet0 planet0;
+Planet1 planet1;
+Planet2 planet2;
 
 Page[] introPages;
 Page[] planet0Pages;
 Page[] planet0EpilPages;
+Page[] planet1Pages;
+Page[] planet1EpilPages;
+Page[] planet2Pages;
+Page[] planet2EpilPages;
 
 ChoicePage planet0land;
 ChoicePage joinLyn;
+ChoicePage joinSenhar;
+ChoicePage joinVastu;
 
 public void setup() {
     //game setup
@@ -42,12 +53,19 @@ public void draw() {
         planet0.renderPlanet();
         break;
       case PLANET0EPIL:
-        renderPlanet0Epil();
+        planet0.renderPlanetEpil();
+        break;
       case PLANET1:
-        renderPlanet1();
+        planet1.renderPlanet();
+        break;
+      case PLANET1EPIL:
+        planet1.renderPlanetEpil();
         break;
       case PLANET2:
-        renderPlanet2();
+        planet2.renderPlanet();
+        break;
+      case PLANET2EPIL:
+        planet2.renderPlanetEpil();
         break;
       case ENDING:
         renderEnding();
@@ -75,19 +93,23 @@ public void keyPressed() {
       handleIntroInput();
       break;
     case PLANET0:
-      planet0.handleInput();
+      handlePlanet0Input();
       break;
     case PLANET0EPIL:
       handlePlanet0EpilInput();
       break;
-    //case PLANET1:
-    //  // Handle user input for Planet1
-    //  handlePlanet1Input();
-    //  break;
-    //case PLANET2:
-    //  // Handle user input for Planet2
-    //  handlePlanet2Input();
-    //  break;
+    case PLANET1:
+      handlePlanet1Input();
+      break;
+     case PLANET1EPIL:
+      handlePlanet1EpilInput();
+      break;
+    case PLANET2:
+      handlePlanet2Input();
+      break;
+     case PLANET2EPIL:
+      handlePlanet2EpilInput();
+      break;
     //case ENDING:
     //  // Handle user input for the ending
     //  handleEndingInput();
@@ -97,10 +119,12 @@ public void keyPressed() {
   }
 }
 
-void handleInput() {
+void handlePlanet0Input() {
   //maze controls
   if (planet0Index == 20) {
-    mazeInput();
+    if (!gameOver) {
+    mazeInput(maze0);
+    }
   }
   //choice page
   else if (planet0Index == 37) {
@@ -130,8 +154,13 @@ void handleInput() {
 
 void handlePlanet0EpilInput() {
   if (key == ' ') {
-    if (planet0EpilIndex == planet0EpilPages.length) { 
+    if (planet0EpilIndex == planet0EpilPages.length - 1) {
+      ChoicePage joinSenhar = new ChoicePage(35, new String[] {"You decide to: ", "join her", "refuse"}, "Scenes\\planet00ba.png", new Page[] {}, new Page[] {});
+      planet1 = new Planet1(blub);
+      planet1Pages = planet1.pages;
+      planet1EpilPages = planet1.epilScene;
       currentState = GameState.PLANET1;
+      System.out.println(currentState);
       planet0EpilIndex = 0; 
     }
     else {
@@ -140,3 +169,86 @@ void handlePlanet0EpilInput() {
     }
   } 
 }
+
+void handlePlanet1Input() {
+    //maze controls
+  if (planet1Index == 19) {
+    mazeInput(maze1);
+  }
+  //choice page
+  else if (planet1Index == 35) {
+    if (keyCode == UP)        joinSenhar.pickChoice1();
+    else if (keyCode == DOWN) joinSenhar.pickChoice2();
+    
+    else if (key == ENTER) {
+        if (joinSenhar.getChoice() == 1)       planet1Index++; 
+        else if (joinSenhar.getChoice() == 2) {
+          currentState = GameState.PLANET2EPIL; 
+          System.out.print(currentState);
+        }
+   }
+  }
+  //default progression
+  else if (key == ' ') {
+    if (planet1Index == planet1Pages.length - 1) { 
+      currentState = GameState.ENDING;
+      planet1Index = 0; 
+    }
+    else {
+      planet1Index++; 
+      System.out.println(planet1Index);
+    }
+  }  
+}
+
+void handlePlanet1EpilInput() {
+  if (key == ' ') {
+    if (planet1EpilIndex == planet1EpilPages.length - 1) {
+      ChoicePage joinVastu = new ChoicePage(28, new String[] {"You decide to: ", "join him", "refuse"}, "Scenes\\planet02ba.png", new Page[] {}, new Page[] {});
+      planet2 = new Planet2(blub);
+      planet2Pages = planet2.pages;
+      planet2EpilPages = planet2.epilScene;
+      currentState = GameState.PLANET2;
+      System.out.println(currentState);
+      planet1EpilIndex = 0; 
+    }
+    else {
+      planet1EpilIndex++; 
+      System.out.println(planet1EpilIndex);
+    }
+  } 
+}
+
+void handlePlanet2Input()     {
+
+  //maze controls
+  if (planet2Index == 21) {
+    mazeInput(maze2);
+  }
+  //choice page
+  else if (planet2Index == 28) {
+    if (keyCode == UP)        joinVastu.pickChoice1();
+    else if (keyCode == DOWN) joinVastu.pickChoice2();
+    
+    else if (key == ENTER) {
+        if (joinVastu.getChoice() == 1)       planet2Index++; 
+        else if (joinVastu.getChoice() == 2) {
+          currentState = GameState.PLANET2EPIL; 
+          System.out.print(currentState);
+        }
+   }
+  }
+  //default progression
+  else if (key == ' ') {
+    if (planet2Index == planet2Pages.length - 1) { 
+      currentState = GameState.ENDING;
+      planet1Index = 0; 
+    }
+    else {
+      planet2Index++; 
+      System.out.println(planet2Index);
+    }
+  }
+}
+
+void handlePlanet2EpilInput() {}

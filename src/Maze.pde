@@ -73,12 +73,18 @@ public void mazeGame(int[][] maze) {
     rect(px * blockSize, py * blockSize, blockSize, blockSize);
     
     //check end
-    if (maze[py - 1][px] == 2) {gameOver = true; planet0Index++;}
+    if (maze[py - 1][px] == 2) {gameOver = true;}
 }
 
-public void mazeInput() {
-    if (keyCode == UP && py > 0 && maze1[py - 1][px] == 0)                py--;
-    else if (keyCode == DOWN && py < mazeH - 1 && maze1[py + 1][px] == 0) py++;
-    else if (keyCode == LEFT && px > 0 && maze1[py][px - 1] == 0)         px--;
-    else if (keyCode == RIGHT && px < mazeW - 1 && maze1[py][px + 1] == 0)px++;
+public void mazeReset() {
+    gameOver = false;
+    px = 1; 
+    py = 1; 
+}
+
+public void mazeInput(int[][] maze) {
+    if (keyCode == UP && py > 0 && maze[py - 1][px] == 0)                py--;
+    else if (keyCode == DOWN && py < mazeH - 1 && maze[py + 1][px] == 0) py++;
+    else if (keyCode == LEFT && px > 0 && maze[py][px - 1] == 0)         px--;
+    else if (keyCode == RIGHT && px < mazeW - 1 && maze[py][px + 1] == 0)px++;
 }
