@@ -10,6 +10,7 @@ public abstract class Planet{
   }  
    
   public abstract void renderPlanet();
+  public abstract void renderPlanetEpil();
   
   Page[] append(Page[] first, Page[] second) {
     Page[] result = new Page[first.length + second.length];

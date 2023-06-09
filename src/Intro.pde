@@ -41,13 +41,20 @@ void handleIntroInput() {
     else if (key == ENTER) {
         if (planet0land.getChoice() == 1)      {
             joinLyn = new ChoicePage(36, new String[] {"You decide to: ", "join them", "refuse"}, "Scenes\\planet00ba.png", new Page[] {}, new Page[] {});
-            Planet0 planet0 = new Planet0(blub);
+            planet0 = new Planet0(blub);
             planet0Pages = planet0.pages;
             planet0EpilPages = planet0.epilScene;
             currentState = GameState.PLANET0;
             System.out.println(currentState);
         }
-        else if (planet0land.getChoice() == 2) {currentState = GameState.PLANET1; System.out.print(currentState);}
+        else if (planet0land.getChoice() == 2) {
+            joinSenhar = new ChoicePage(35, new String[] {"You decide to: ", "join her", "refuse"}, "Scenes\\planet01ba.png", new Page[] {}, new Page[] {});
+            planet1 = new Planet1(blub);
+            planet1Pages = planet1.pages;
+            planet1EpilPages = planet1.epilScene;
+            currentState = GameState.PLANET1; 
+            System.out.print(currentState);
+       }
     }
     
   //default progression 

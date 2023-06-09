@@ -54,17 +54,75 @@ public class Planet0 extends Planet {
   public Planet0(String blub) {
     this.llamo = blub;
     this.pages = startScene;
+    mazeReset();
   }
   
   void renderPlanet() {
-    if (planet0Index == 20 && !gameOver) mazeGame(maze0);
+    if (planet0Index == 20) {
+      color c1 = #B2BEB5;
+      color c2 = #01796f;
+      if (!gameOver) mazeGame(maze2, c1, c2);
+      else planet0Index++;
+    }
     else {
         resetFont(); 
         planet0Pages[planet0Index].displayPage();
     }
   }
   
-  void renderPlanet0Epil() {
+  void renderPlanetEpil() {
    planet0EpilPages[planet0EpilIndex].displayPage();
   }
+  
+  void handlePlanetInput() {
+    //maze controls
+    if (planet0Index == 20) {
+      if (!gameOver) {
+      mazeInput(maze0);
+      }
+    }
+    //choice page
+    else if (planet0Index == 37) {
+      if (keyCode == UP)        joinLyn.pickChoice1();
+      else if (keyCode == DOWN) joinLyn.pickChoice2();
+      
+      else if (key == ENTER) {
+          if (joinLyn.getChoice() == 1)              planet0Index++; 
+          else if (joinLyn.getChoice() == 2) {
+            currentState = GameState.PLANET0EPIL; 
+            System.out.print(currentState);
+         }
+      }
+    }
+    //default progression
+    else if (key == ' ') {
+      if (planet0Index == planet0Pages.length - 1) { 
+        currentState = GameState.GOODENDING;
+        planet0Index = 0; 
+      }
+      else {
+        planet0Index++; 
+        System.out.println(planet0Index);
+      }
+    }  
+  }
+  
+  void handlePlanetEpilInput() {
+    if (key == ' ') {
+      if (planet0EpilIndex == planet0EpilPages.length - 1) {
+        joinSenhar = new ChoicePage(35, new String[] {"You decide to: ", "join her", "refuse"}, "Scenes\\planet01ba.png", new Page[] {}, new Page[] {});
+        planet1 = new Planet1(this.llamo);
+        planet1Pages = planet1.pages;
+        planet1EpilPages = planet1.epilScene;
+        currentState = GameState.PLANET1;
+        System.out.println(currentState);
+        planet0EpilIndex = 0; 
+      }
+      else {
+        planet0EpilIndex++; 
+        System.out.println(planet0EpilIndex);
+      }
+    } 
+  }
+
 }

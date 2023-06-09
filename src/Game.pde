@@ -3,8 +3,11 @@ public enum GameState {
     PLANET0,
     PLANET0EPIL,
     PLANET1,
+    PLANET1EPIL,
     PLANET2,
-    ENDING
+    PLANET2EPIL,
+    GOODENDING,
+    BADENDING
 }
 
 GameState currentState;
@@ -14,17 +17,26 @@ int introPageIndex = 0;
 int planet0Index = 0;
 int planet0EpilIndex = 0;
 int planet1Index = 0;
+int planet1EpilIndex = 0;
 int planet2Index = 0;
-
+int planet2EpilIndex = 0;
 
 Planet0 planet0;
+Planet1 planet1;
+Planet2 planet2;
 
 Page[] introPages;
 Page[] planet0Pages;
 Page[] planet0EpilPages;
+Page[] planet1Pages;
+Page[] planet1EpilPages;
+Page[] planet2Pages;
+Page[] planet2EpilPages;
 
 ChoicePage planet0land;
 ChoicePage joinLyn;
+ChoicePage joinSenhar;
+ChoicePage joinVastu;
 
 public void setup() {
     //game setup
@@ -42,16 +54,26 @@ public void draw() {
         planet0.renderPlanet();
         break;
       case PLANET0EPIL:
-        renderPlanet0Epil();
+        planet0.renderPlanetEpil();
+        break;
       case PLANET1:
-        renderPlanet1();
+        planet1.renderPlanet();
+        break;
+      case PLANET1EPIL:
+        planet1.renderPlanetEpil();
         break;
       case PLANET2:
-        renderPlanet2();
+        planet2.renderPlanet();
         break;
-      case ENDING:
-        renderEnding();
+      case PLANET2EPIL:
+        planet2.renderPlanetEpil();
         break;
+      case GOODENDING:
+        renderGoodEnding();
+        break;
+      case BADENDING:
+        renderBadEnding();
+        break;  
     }
 }
 
@@ -63,7 +85,12 @@ void resetFont() {
 void renderPlanet1() {}
 void renderPlanet2() {}
 
-void renderEnding()  {
+void renderGoodEnding()  {
+   Page endScreen = new Page(0, new String[] {"Having found their true belonging, " + blub + " stayed on his newly found home, living there happily ever after..."}, "Scenes\\TitleScreen.png");
+   endScreen.displayPage();
+}
+
+void renderBadEnding()  {
    Page endScreen = new Page(0, new String[] {"Having never found their true belonging, " + blub + " continued venturing throughout the galaxy, searching for a home. While a part of their journey was documented here, their fate remains a mystery for ages..."}, "Scenes\\TitleScreen.png");
    endScreen.displayPage();
 }
@@ -75,19 +102,23 @@ public void keyPressed() {
       handleIntroInput();
       break;
     case PLANET0:
-      planet0.handleInput();
+      planet0.handlePlanetInput();
       break;
     case PLANET0EPIL:
-      handlePlanet0EpilInput();
+      planet0.handlePlanetEpilInput();
       break;
-    //case PLANET1:
-    //  // Handle user input for Planet1
-    //  handlePlanet1Input();
-    //  break;
-    //case PLANET2:
-    //  // Handle user input for Planet2
-    //  handlePlanet2Input();
-    //  break;
+    case PLANET1:
+      planet1.handlePlanetInput();
+      break;
+     case PLANET1EPIL:
+      planet1.handlePlanetEpilInput();
+      break;
+    case PLANET2:
+      planet2.handlePlanetInput();
+      break;
+     case PLANET2EPIL:
+      planet2.handlePlanetEpilInput();
+      break;
     //case ENDING:
     //  // Handle user input for the ending
     //  handleEndingInput();
@@ -95,48 +126,4 @@ public void keyPressed() {
     default: 
       System.out.println("Not Working!");
   }
-}
-
-void handleInput() {
-  //maze controls
-  if (planet0Index == 20) {
-    mazeInput();
-  }
-  //choice page
-  else if (planet0Index == 37) {
-    if (keyCode == UP)        joinLyn.pickChoice1();
-    else if (keyCode == DOWN) joinLyn.pickChoice2();
-    
-    else if (key == ENTER) {
-        if (joinLyn.getChoice() == 1)              planet0Index++; 
-        else if (joinLyn.getChoice() == 2) {
-          currentState = GameState.PLANET0EPIL; 
-          System.out.print(currentState);
-       }
-    }
-  }
-  //default progression
-  else if (key == ' ') {
-    if (planet0Index == planet0Pages.length - 1) { 
-      currentState = GameState.ENDING;
-      planet0Index = 0; 
-    }
-    else {
-      planet0Index++; 
-      System.out.println(planet0Index);
-    }
-  }  
-}
-
-void handlePlanet0EpilInput() {
-  if (key == ' ') {
-    if (planet0EpilIndex == planet0EpilPages.length) { 
-      currentState = GameState.PLANET1;
-      planet0EpilIndex = 0; 
-    }
-    else {
-      planet0EpilIndex++; 
-      System.out.println(planet0EpilIndex);
-    }
-  } 
 }

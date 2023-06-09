@@ -52,7 +52,7 @@ int mazeH = maze0.length; // Height of the maze in blocks
 int px = 1; 
 int py = 1; 
 
-public void mazeGame(int[][] maze) {
+public void mazeGame(int[][] maze, color path, color walls) {
     background(#000000);
     //maze draw 
     /* 
@@ -62,8 +62,8 @@ public void mazeGame(int[][] maze) {
     */
     for (int y = 0; y < mazeH; y++) {
         for (int x = 0; x < mazeW; x++) {
-            if (maze[y][x] == 0)      fill(34,139,34);
-            else if (maze[y][x] == 1) fill(119,136,153);
+            if (maze[y][x] == 0)      fill(path);
+            else if (maze[y][x] == 1) fill(walls);
             else if (maze[y][x] == 2) fill(255,255,0);
             rect(x * blockSize, y * blockSize, blockSize, blockSize);
         }
@@ -73,12 +73,18 @@ public void mazeGame(int[][] maze) {
     rect(px * blockSize, py * blockSize, blockSize, blockSize);
     
     //check end
-    if (maze[py - 1][px] == 2) {gameOver = true; planet0Index++;}
+    if (maze[py - 1][px] == 2) {gameOver = true;}
 }
 
-public void mazeInput() {
-    if (keyCode == UP && py > 0 && maze1[py - 1][px] == 0)                py--;
-    else if (keyCode == DOWN && py < mazeH - 1 && maze1[py + 1][px] == 0) py++;
-    else if (keyCode == LEFT && px > 0 && maze1[py][px - 1] == 0)         px--;
-    else if (keyCode == RIGHT && px < mazeW - 1 && maze1[py][px + 1] == 0)px++;
+public void mazeReset() {
+    gameOver = false;
+    px = 1; 
+    py = 1; 
+}
+
+public void mazeInput(int[][] maze) {
+    if (keyCode == UP && py > 0 && maze[py - 1][px] == 0)                py--;
+    else if (keyCode == DOWN && py < mazeH - 1 && maze[py + 1][px] == 0) py++;
+    else if (keyCode == LEFT && px > 0 && maze[py][px - 1] == 0)         px--;
+    else if (keyCode == RIGHT && px < mazeW - 1 && maze[py][px + 1] == 0)px++;
 }
