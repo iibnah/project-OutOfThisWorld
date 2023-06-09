@@ -43,7 +43,7 @@ public class Planet1 extends Planet{
   };
   
   Page[] epilScene = new Page[] {
-      new Page(36, new String[] {"Senhar: \"Ah, what a shame. I wish you safe travels, BLUB. I hope you find a place to rest soon.\""},"Scenes\\planet00ba.png"),
+      new Page(36, new String[] {"Senhar: \"Ah, what a shame. I wish you safe travels, " + blub + ". I hope you find a place to rest soon.\""},"Scenes\\planet01ba.png"),
   };
   
   int[][] maze1 = new int[][]  {
@@ -69,7 +69,9 @@ public class Planet1 extends Planet{
   
   void renderPlanet() {
     if (planet1Index == 19) {
-      if (!gameOver) { mazeGame(maze1);}
+      color c1 = #B2BEB5;
+      color c2 = #E42217;
+      if (!gameOver) mazeGame(maze2, c1, c2);
       else planet1Index++;
     }
     else {
@@ -82,7 +84,7 @@ public class Planet1 extends Planet{
    planet1EpilPages[planet1EpilIndex].displayPage();
   }
   
-  void handlePlanet1Input() {
+  void handlePlanetInput() {
         //maze controls
       if (planet1Index == 19) {
         mazeInput(maze1);
@@ -95,7 +97,7 @@ public class Planet1 extends Planet{
         else if (key == ENTER) {
             if (joinSenhar.getChoice() == 1)       planet1Index++; 
             else if (joinSenhar.getChoice() == 2) {
-              currentState = GameState.PLANET2EPIL; 
+              currentState = GameState.PLANET1EPIL; 
               System.out.print(currentState);
             }
        }
@@ -103,7 +105,7 @@ public class Planet1 extends Planet{
       //default progression
       else if (key == ' ') {
         if (planet1Index == planet1Pages.length - 1) { 
-          currentState = GameState.ENDING;
+          currentState = GameState.GOODENDING;
           planet1Index = 0; 
         }
         else {
@@ -112,4 +114,22 @@ public class Planet1 extends Planet{
         }
       }
     }
+    
+   void handlePlanetEpilInput() {
+    if (key == ' ') {
+      if (planet1EpilIndex == planet1EpilPages.length - 1) {
+        joinVastu = new ChoicePage(28, new String[] {"You decide to: ", "join him", "refuse"}, "Scenes\\planet02ba.png", new Page[] {}, new Page[] {});
+        planet2 = new Planet2(this.llamo);
+        planet2Pages = planet2.pages;
+        planet2EpilPages = planet2.epilScene;
+        currentState = GameState.PLANET2;
+        System.out.println(currentState);
+        planet1EpilIndex = 0; 
+      }
+      else {
+        planet1EpilIndex++; 
+        System.out.println(planet1EpilIndex);
+      }
+    } 
+  }
 }

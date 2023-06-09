@@ -52,7 +52,7 @@ int mazeH = maze0.length; // Height of the maze in blocks
 int px = 1; 
 int py = 1; 
 
-public void mazeGame(int[][] maze) {
+public void mazeGame(int[][] maze, color path, color walls) {
     background(#000000);
     //maze draw 
     /* 
@@ -62,8 +62,8 @@ public void mazeGame(int[][] maze) {
     */
     for (int y = 0; y < mazeH; y++) {
         for (int x = 0; x < mazeW; x++) {
-            if (maze[y][x] == 0)      fill(34,139,34);
-            else if (maze[y][x] == 1) fill(119,136,153);
+            if (maze[y][x] == 0)      fill(path);
+            else if (maze[y][x] == 1) fill(walls);
             else if (maze[y][x] == 2) fill(255,255,0);
             rect(x * blockSize, y * blockSize, blockSize, blockSize);
         }

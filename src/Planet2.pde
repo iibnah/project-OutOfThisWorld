@@ -3,12 +3,12 @@ public class Planet2 extends Planet{
     new Page(0, new String[] {"Arriving on Nephides, you observe your surroundings. Your boots are already drenched with water and the atmosphere is moist."}, "Scenes\\planet02aa.png"),
     new Page(1, new String[] {"You see vast, open waters and you take a deep breath of the salty air that reminds you of the oceans back home. You see a small canoe floating across out of the corner of your eye."}, "Scenes\\planet02aa.png"),
     new Page(2, new String[] {"Looking closer, you see a figure leading the canoe toward you. He wears a heavy cape, a tight, blue vest, and an assortment of bags. Although his attire does not look waterproof, the figure remained dry. Somehow, he is holding a book while rowing at the same time."}, "Scenes\\planet02aa.png"),
-    new Page(3, new String[] {blub + ": \"Hey there! I'm BLUB, and I have been traveling for quite some time now for a place to call home. Might I ask you a bit about this planet of yours?\""}, "Scenes\\planet02aa.png"),
+    new Page(3, new String[] {blub + ": \"Hey there! I'm " + blub + ", and I have been traveling for quite some time now for a place to call home. Might I ask you a bit about this planet of yours?\""}, "Scenes\\planet02aa.png"),
     new Page(4, new String[] {"Vastu: \"Ah, a fellow wanderer... My name is Vastu Syent. Please, ask away.\""}, "Scenes\\planet02aa.png"),
     new Page(5, new String[] {"Vastu is a bit reserved and reluctant to answer your questions, but seems kind nonetheless. "}, "Scenes\\planet02aa.png"),
     new Page(6, new String[] {blub + ": \"What is there to this planet? From what I can tell, there is only a lot of water.\""}, "Scenes\\planet02aa.png"),
     new Page(7, new String[] {"At this, Vastu lets out a heartening laugh, and as if his smile is contagious, you begin to smile as well. "}, "Scenes\\planet02aa.png"),
-    new Page(8, new String[] {"Vastu: \"My apologies, BLUB. I do not mean to laugh at you. It's just that Nephides may seem simple at first glance, but it really is full of life. There is never a dull moment here.\""}, "Scenes\\planet02aa.png"),
+    new Page(8, new String[] {"Vastu: \"My apologies, + " + blub + ". I do not mean to laugh at you. It's just that Nephides may seem simple at first glance, but it really is full of life. There is never a dull moment here.\""}, "Scenes\\planet02aa.png"),
     new Page(9, new String[] {"Vastu: \"In fact, I consider myself an explorer of sorts. My goal is to document every living specimen and environment that I can, though it can be a bit lonely at times.\""}, "Scenes\\planet02aa.png"),
     new Page(10, new String[] {"You want to reach out to Vastu, to be able to cure him of his loneliness but you wonder if Vastu would even want you to come along with him."}, "Scenes\\planet02aa.png"),
     new Page(11, new String[] {blub + ": \"If it's alright with you, may I join you in your adventures for a while? I would love to explore this planet and the wonders that you speak of. Plus, I am in need of a guide.\""}, "Scenes\\planet02aa.png"),
@@ -22,7 +22,7 @@ public class Planet2 extends Planet{
     new Page(19, new String[] {"Vastu: \"Well, I have been trying to find the Gargamelian Eel for quite some time now. But, I can't seem to be able to track where it will appear next. Would you mind helping me?\""}, "Scenes\\planet02ba.png"),
     new Page(20, new String[] {blub + ": \"I'll give it my best shot!\""}, "Scenes\\planet02ba.png"),
     new Page(21, new String[] {"MAZE SCENE"}, "Scenes\\planet02ba.png"),
-    new Page(22, new String[] {"Vastu: \"You truly are remarkable... Thank you, BLUB. Now, we can embark on our journey.\""}, "Scenes\\planet02ba.png"),
+    new Page(22, new String[] {"Vastu: \"You truly are remarkable... Thank you, " + blub + ". Now, we can embark on our journey.\""}, "Scenes\\planet02ba.png"),
     new Page(23, new String[] {"After touring you through the deep seas and introducing you to the plentiful species along the way, Vastu finally stops at the entrance of an underwater cave that leads to the infamous eel."}, "Scenes\\planet02ba.png"),
     new Page(24, new String[] {"Vastu: \"Well, here we are. You've already helped me so much. It was already nice to have someone along my side for once. It was my pleasure guiding you through my planet.\""}, "Scenes\\planet02ba.png"),
     new Page(25, new String[] {"Vastu: \"Would you like to continue on this journey with me?\""}, "Scenes\\planet02ba.png"),
@@ -35,7 +35,7 @@ public class Planet2 extends Planet{
   };
   
   Page[] epilScene = new Page[] {
-      new Page(29, new String[] {"Vastu: \"Ah, what a shame. I shall see you off, then.\""},"Scenes\\planet00ba.png"),
+      new Page(29, new String[] {"Vastu: \"Ah, what a shame. I shall see you off, then.\""},"Scenes\\planet02ba.png"),
   };
   
   int[][] maze2 = new int[][]  {
@@ -61,7 +61,9 @@ public class Planet2 extends Planet{
   
   void renderPlanet() {
     if (planet2Index == 21) {
-      if (!gameOver) { mazeGame(maze2);}
+      color c1 = #B2BEB5;
+      color c2 = #006994;
+      if (!gameOver) mazeGame(maze2, c1, c2);
       else planet2Index++;
     }
     else {
@@ -74,7 +76,7 @@ public class Planet2 extends Planet{
    planet2EpilPages[planet2EpilIndex].displayPage();
   }
   
-  void handlePlanet2Input()     {
+  void handlePlanetInput()     {
     //maze controls
     if (planet2Index == 21) {
        mazeInput(maze2);
@@ -85,17 +87,17 @@ public class Planet2 extends Planet{
       else if (keyCode == DOWN) joinVastu.pickChoice2();
       
       else if (key == ENTER) {
-          if (joinVastu.getChoice() == 1)       planet2Index++; 
-          else if (joinVastu.getChoice() == 2) {
-            currentState = GameState.PLANET2EPIL; 
-            System.out.print(currentState);
-          }
+        if (joinVastu.getChoice() == 1)       planet2Index++; 
+        else if (joinVastu.getChoice() == 2) {
+          currentState = GameState.BADENDING; 
+          System.out.print(currentState);
+        }
      }
     }
     //default progression
     else if (key == ' ') {
       if (planet2Index == planet2Pages.length - 1) { 
-        currentState = GameState.ENDING;
+        currentState = GameState.GOODENDING;
         planet2Index = 0; 
       }
       else {
@@ -103,5 +105,19 @@ public class Planet2 extends Planet{
         System.out.println(planet2Index);
       }
     }
+  }
+  
+  void handlePlanetEpilInput() {
+    if (key == ' ') {
+      if (planet1EpilIndex == planet1EpilPages.length - 1) { 
+        currentState = GameState.BADENDING;
+        System.out.println(currentState);
+        planet1EpilIndex = 0; 
+      }
+      else {
+        planet1EpilIndex++; 
+        System.out.println(planet1EpilIndex);
+      }
+    } 
   }
 }
