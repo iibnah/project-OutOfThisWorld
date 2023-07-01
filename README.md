@@ -20,13 +20,13 @@ git clone git@github.com:iibnah/project-OutOfThisWorld.git
 ```
 This command will create a local copy of the repository on your machine.
 
-###Launching the Visual Novel
+### Launching the Visual Novel
 1) Open the Processing IDE.
 2) In the Processing IDE, go to File > Open... and navigate to the location where you cloned the repository.
 3) Inside the repository folder, open the OutOfThisWorld.pde file.
 4) Once the file is open, click on the "Play" button in the Processing IDE or press Ctrl + R (or Cmd + R on macOS) to run the visual novel.
 
-###Gameplay
+### Gameplay
 The visual novel follows a text-based adventure format, where you will encounter various scenarios and make decisions that affect the outcome of your adventure. The game provides prompts and options for you to choose from.
 
 Use the keyboard to select your choices. Follow the on-screen instructions to progress through the story.
